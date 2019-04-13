@@ -1,4 +1,4 @@
-package com.pixelparty.pixelparty;
+package com.pixelparty;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
