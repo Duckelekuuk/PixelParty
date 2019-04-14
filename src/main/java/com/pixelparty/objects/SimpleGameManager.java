@@ -1,6 +1,6 @@
 package com.pixelparty.objects;
 
-import com.pixelparty.api.Games.AbstractGame;
+import com.pixelparty.api.games.AbstractGame;
 import com.pixelparty.api.IGameManager;
 
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package com.pixelparty.api.Games;
+package com.pixelparty.api.games;
 
 import org.bukkit.entity.Player;
 

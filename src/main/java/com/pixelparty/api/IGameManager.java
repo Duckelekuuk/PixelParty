@@ -1,6 +1,6 @@
 package com.pixelparty.api;
 
-import com.pixelparty.api.Games.AbstractGame;
+import com.pixelparty.api.games.AbstractGame;
 
 import java.util.Collection;
 
