@@ -7,7 +7,7 @@ import org.bukkit.inventory.InventoryHolder;
 
 public abstract class AbstractInventory implements InventoryHolder {
 
-    private Inventory inventory;
+    private final Inventory inventory;
 
     public AbstractInventory() {
         this.inventory = Bukkit.createInventory(this, 54);
