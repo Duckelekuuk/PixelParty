@@ -7,8 +7,8 @@ import java.util.Collection;
 
 public abstract class AbstractTickingGame extends AbstractGame {
 
-    public AbstractTickingGame(AbstractGameInventory inventory, boolean shareScreen, Collection<Player> players) {
-        super(inventory, shareScreen, players);
+    public AbstractTickingGame(boolean sharedScreen, Collection<Player> players) {
+        super(sharedScreen, players);
     }
 
     public abstract void onTick();

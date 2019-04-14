@@ -4,10 +4,7 @@ import com.pixelparty.api.IGameAPI;
 import com.pixelparty.api.games.AbstractGameManager;
 import org.bukkit.entity.Player;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SimpleGameApi implements IGameAPI {
 
@@ -19,7 +16,7 @@ public class SimpleGameApi implements IGameAPI {
     }
 
     @Override
-    public boolean startNewGame(Class<? extends AbstractGameManager> gameManagerClass, Collection<Player> players) {
+    public boolean startNewGame(Class<? extends AbstractGameManager> gameManagerClass, Set<Player> players) {
         if (!gameManagerMap.containsKey(gameManagerClass)) return false;
 
         AbstractGameManager manager = gameManagerMap.get(gameManagerClass);

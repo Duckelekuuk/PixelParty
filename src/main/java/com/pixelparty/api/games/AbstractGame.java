@@ -2,18 +2,19 @@ package com.pixelparty.api.games;
 
 import com.pixelparty.api.inventory.AbstractGameInventory;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public abstract class AbstractGame {
 
+    private final boolean sharedScreen;
+    private final Collection<Player> players;
     private AbstractGameInventory inventory;
-    private final boolean shareScreen;
-    protected final Collection<Player> players;
 
-    public AbstractGame(AbstractGameInventory inventory, boolean shareScreen, Collection<Player> players) {
-        setInventory(inventory);
-        this.shareScreen = shareScreen;
+    public AbstractGame(boolean sharedScreen, Collection<Player> players) {
+        this.sharedScreen = sharedScreen;
         this.players = players;
     }
 
@@ -21,7 +22,20 @@ public abstract class AbstractGame {
         players.remove(player);
     }
 
-    protected void setInventory(AbstractGameInventory inventory) {
+    public void setInventory(AbstractGameInventory inventory) {
         this.inventory = inventory;
+
+        if (sharedScreen) {
+            Inventory sharedInventory = inventory.getInventory();
+            players.forEach(player -> player.openInventory(sharedInventory));
+        } else players.forEach(player -> player.openInventory(inventory.getInventory()));
+    }
+
+    protected AbstractGameInventory getInventory() {
+        return inventory;
+    }
+
+    protected Collection<Player> getPlayers() {
+        return Collections.unmodifiableCollection(players);
     }
 }
