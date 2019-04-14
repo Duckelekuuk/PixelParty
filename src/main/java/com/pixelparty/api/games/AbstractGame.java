@@ -1,19 +1,20 @@
 package com.pixelparty.api.games;
 
 import com.pixelparty.api.inventory.AbstractInventory;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
 public abstract class AbstractGame {
 
-    private final AbstractInventory mainInventory;
-    private Collection<Player> players;
+    @Getter
+    private final String prettyName, description;
 
-    public AbstractGame(Collection<Player> players) {
-        this.players = players;
-        mainInventory = null;
+    public AbstractGame(String prettyName, String description) {
+        this.prettyName = prettyName;
+        this.description = description;
     }
 
-    public void start(){}
+    public abstract AbstractInventory startNewGame(Collection<Player> playersWhichPlay);
 }
