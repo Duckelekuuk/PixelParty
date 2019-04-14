@@ -1,32 +1,29 @@
 package com.pixelparty.managers;
 
-import com.pixelparty.api.games.AbstractGame;
 import com.pixelparty.api.IGameManager;
-import org.bukkit.entity.Player;
+import com.pixelparty.api.games.AbstractGameInfo;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SimpleGameManager implements IGameManager {
 
-    private int registeredGamesCount = 0;
-    private final Map<Integer, AbstractGame> registeredGames = new HashMap<>();
+    private final Map<Class<? extends AbstractGameInfo>, AbstractGameInfo> registeredGames = new HashMap<>();
 
     @Override
-    public void registerGame(AbstractGame game) {
-        registeredGames.put(registeredGamesCount++, game);
+    public void registerGame(AbstractGameInfo game) {
+        registeredGames.put(game.getClass(), game);
     }
 
     @Override
-    public boolean startGame(int game, Set<Player> players) {
-        if (!registeredGames.containsKey(game)) return false;
-
-        AbstractGame abstractGame = registeredGames.get(game);
-        players.forEach(player -> player.openInventory(abstractGame.startNewGame(players).getInventory()));
-        return true;
+    public Collection<AbstractGameInfo> getAllRegisteredGames() {
+        return registeredGames.values();
     }
 
     @Override
-    public Map<Integer, AbstractGame> getAllRegisteredGames() {
-        return Collections.unmodifiableMap(registeredGames);
+    public <T extends AbstractGameInfo> T getGame(Class<T> gameInfoClass) {
+        if (registeredGames.containsKey(gameInfoClass)) return null;
+        return gameInfoClass.cast(registeredGames.get(gameInfoClass));
     }
 }

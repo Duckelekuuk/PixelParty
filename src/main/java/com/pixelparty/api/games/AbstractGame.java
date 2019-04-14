@@ -6,14 +6,15 @@ import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
-public abstract class AbstractGame {
+public abstract class AbstractGame<T extends AbstractGameInfo> {
 
     @Getter
-    private final String prettyName, description;
+    private final T gameInfo;
 
-    public AbstractGame(String prettyName, String description) {
-        this.prettyName = prettyName;
-        this.description = description;
+    private AbstractInventory mainInventory;
+
+    public AbstractGame(T gameInfo) {
+        this.gameInfo = gameInfo;
     }
 
     public abstract AbstractInventory startNewGame(Collection<Player> playersWhichPlay);
