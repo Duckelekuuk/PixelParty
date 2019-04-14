@@ -22,7 +22,7 @@ public abstract class AbstractGameManager<G extends AbstractGame, I extends Abst
     }
 
     public void onPlayerQuit(Player player) {
-        activeGames.stream().filter(game -> game.players.contains(player)).forEach(game -> game.onPlayerQuit(player));
+        activeGames.stream().filter(game -> game.getPlayers().contains(player)).forEach(game -> game.onPlayerQuit(player));
     }
 
     protected abstract G getNewGame(Collection<Player> players);
