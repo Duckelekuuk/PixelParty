@@ -1,7 +1,7 @@
 package com.pixelparty.api.inventory;
 
 import com.pixelparty.api.games.AbstractGame;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.*;
 
 public abstract class AbstractGameInventory<T extends AbstractGame> extends AbstractInventory {
 
@@ -25,5 +25,25 @@ public abstract class AbstractGameInventory<T extends AbstractGame> extends Abst
     public AbstractGameInventory(T abstractGame, InventoryType inventoryType, String title) {
         super(inventoryType, title);
         this.abstractGame = abstractGame;
+    }
+
+    @Override
+    public void onDrag(InventoryDragEvent event) {
+        abstractGame.onDrag(event);
+    }
+
+    @Override
+    public void onClick(InventoryClickEvent event) {
+        abstractGame.onClick(event);
+    }
+
+    @Override
+    public void onOpen(InventoryOpenEvent event) {
+        abstractGame.onOpen(event);
+    }
+
+    @Override
+    public void onClose(InventoryCloseEvent event) {
+        abstractGame.onClose(event);
     }
 }

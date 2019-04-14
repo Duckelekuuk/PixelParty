@@ -1,5 +1,5 @@
 name: PixelParty
 version: ${project.version}
-main: PixelParty
+main: ${project.groupId}.PixelParty
 api-version: 1.13
 authors: [Duckelekuuk, DatGamertje]

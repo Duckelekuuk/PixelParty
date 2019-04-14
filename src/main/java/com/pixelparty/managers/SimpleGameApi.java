@@ -16,7 +16,7 @@ public class SimpleGameApi implements IGameAPI {
     }
 
     @Override
-    public boolean startNewGame(Class<? extends AbstractGameManager> gameManagerClass, Set<Player> players) {
+    public boolean startNewGame(Class<? extends AbstractGameManager> gameManagerClass, Collection<Player> players) {
         if (!gameManagerMap.containsKey(gameManagerClass)) return false;
 
         AbstractGameManager manager = gameManagerMap.get(gameManagerClass);

@@ -2,6 +2,10 @@ package com.pixelparty.api.games;
 
 import com.pixelparty.api.inventory.AbstractGameInventory;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Collection;
@@ -31,11 +35,19 @@ public abstract class AbstractGame {
         } else players.forEach(player -> player.openInventory(inventory.getInventory()));
     }
 
-    protected AbstractGameInventory getInventory() {
-        return inventory;
+    @SuppressWarnings("unchecked")
+    protected <T extends AbstractGameInventory> T getInventory() {
+        return (T) inventory;
     }
 
     protected Collection<Player> getPlayers() {
         return Collections.unmodifiableCollection(players);
     }
+
+    public void onDrag(InventoryDragEvent event) {}
+    public void onClick(InventoryClickEvent event) {}
+    public void onOpen(InventoryOpenEvent event) {}
+    public void onClose(InventoryCloseEvent event) {}
+
+
 }
