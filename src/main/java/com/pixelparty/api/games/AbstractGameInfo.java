@@ -2,7 +2,7 @@ package com.pixelparty.api.games;
 
 import lombok.Getter;
 
-public abstract class AbstractGameInfo<T extends AbstractGame> {
+public abstract class AbstractGameInfo {
 
     @Getter
     private final String prettyName, description;
@@ -11,6 +11,4 @@ public abstract class AbstractGameInfo<T extends AbstractGame> {
         this.prettyName = prettyName;
         this.description = description;
     }
-
-    public abstract T createGame();
 }

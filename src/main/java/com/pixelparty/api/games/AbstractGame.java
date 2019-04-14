@@ -1,22 +1,27 @@
 package com.pixelparty.api.games;
 
 import com.pixelparty.api.inventory.AbstractGameInventory;
-import com.pixelparty.api.inventory.AbstractInventory;
-import lombok.Getter;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
-public abstract class AbstractGame<T extends AbstractGameInfo> {
+public abstract class AbstractGame {
 
-    @Getter
-    private final T gameInfo;
+    private AbstractGameInventory inventory;
+    private final boolean shareScreen;
+    protected final Collection<Player> players;
 
-    private AbstractGameInventory mainInventory;
-
-    public AbstractGame(T gameInfo) {
-        this.gameInfo = gameInfo;
+    public AbstractGame(AbstractGameInventory inventory, boolean shareScreen, Collection<Player> players) {
+        setInventory(inventory);
+        this.shareScreen = shareScreen;
+        this.players = players;
     }
 
-    public abstract AbstractInventory startNewGame(Collection<Player> playersWhichPlay);
+    public void onPlayerQuit(Player player) {
+        players.remove(player);
+    }
+
+    protected void setInventory(AbstractGameInventory inventory) {
+        this.inventory = inventory;
+    }
 }
