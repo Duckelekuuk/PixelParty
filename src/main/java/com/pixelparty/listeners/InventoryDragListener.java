@@ -15,7 +15,7 @@ public class InventoryDragListener implements Listener {
         if (!(event.getInventory().getHolder() instanceof AbstractInventory)) return;
 
         //Make sure the entity who clicked is a player
-        if ((event.getWhoClicked() instanceof Player)) return;
+        if (!(event.getWhoClicked() instanceof Player)) return;
 
         //Cast to our inventory
         AbstractInventory abstractInventory = (AbstractInventory) event.getInventory().getHolder();
